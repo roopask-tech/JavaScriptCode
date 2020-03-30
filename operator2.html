@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="js/main.js"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        function emi() {
+            if (document.getElementById('loan1').value == null ||
+                document.getElementById('loan1').value.length == 0 ||
+                document.getElementById('months1').value == null ||
+                document.getElementById('months1').value.length == 0 ||
+                document.getElementById('rate1').value == null ||
+                document.getElementById('rate1').value.length == 0) {
+                document.getElementById('pay1').value = "Data Reqd.";
+            }
+
+            else {
+                var pay1 = '';
+                var princ1 = document.getElementById('loan1').value;
+                var term1 = document.getElementById('months1').value;
+                var intr1 = document.getElementById('rate1').value / 1200;
+                document.getElementById('pay1').value = Math.round(princ1 * intr1 / (1 - (Math.pow(1 / (1 + intr1), term1))) * 100) / 100;
+                document.getElementById('gt1').value = Math.round((document.getElementById('pay1').value * document.getElementById('months1').value) * 100) / 100;
+                document.getElementById('tintt1').value = Math.round((document.getElementById('gt1').value * 1 - document.getElementById('loan1').value * 1) * 100) / 100;
+            }
+        }
+
+    </script>
+
+
+
+    <title>Java Script Operators</title>
+</head>
+
+<body>
+
+    <div class="py-2 bg-primary text-white">
+        <h1 class="display-5 text-center">Java Script Operators</h1>
+        <p class="lead text-center">The operator are going operate on the operands, which will produce the result</p>
+    </div>
+    <a href="IndexCalc.html.html" class="ml-2"><i class="fa fa-home"></i></a>
+    <div class="container mt-2">
+        <div class="row">
+            <form id="calc">
+                <div class="col">
+                    <form id="calc">
+                        <h5 class="bg-primary text-white py-1 px-1">Calculator</h5>
+                        <div class="form-group">
+                            <label for="Numer1">Enter the num1:</label>
+                            <input type="number" class="form-control" id="num1" placeholder="Enter the num1:">
+                        </div>
+                        <div class="form-group">
+                            <label for="Number2">Enter the num2:</label>
+                            <input type="number" class="form-control" id="num2" placeholder="Enter the num2:">
+                        </div>
+                        <div class="form-group row">
+
+                            <button type="submit" id="sum" class="btn btn-primary ml-3">Addition</button>
+                            <button type="submit" id="sub" class="btn btn-primary ml-1">Substract</button>
+                            <button type="submit" id="mul" class="btn btn-primary ml-1">Multiply</button>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="text" disabled class="form-control" id="result"
+                                placeholder="The result will be displayed here">
+                        </div>
+                    </form>
+                </div>
+                <!--EMI Calculator-->
+                <div class="col">
+                    <form id="calc">
+                        <h5 class="bg-primary text-white py-1 px-1">EMI Calculator</h5>
+                        <div id=outer>
+                            <b>EMI Calculator</b>
+                            <div id=cover>
+                                <form>
+                                    <table class=main>
+                                        <col class=w50>
+                                        <col class=w50>
+                                        <tr>
+                                            <td>Loan Amount</td>
+                                            <td><input id=loan1></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Repayment in months</td>
+                                            <td><input id=months1></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Interest Rate</td>
+                                            <td><input id=rate1 onchange=emi();></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><button type=reset>Reset</button></td>
+                                            <td><button type=button onclick='emi()'>Submit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>EMI</td>
+                                            <td><input id=pay1></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Interest payable</td>
+                                            <td><input id=tintt1></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total payable</td>
+                                            <td><input id=gt1></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <!-- End of EMI calc-->
+                <!-- Time Conversion calc-->
+                <div class="col">
+                    <form id="calc">
+                        <h5 class="bg-primary text-white py-1 px-1">MS to Sec,Min,Hours</h5>
+                        <div class="form-group">
+                            <label for="hours">Enter the time in hours:</label>
+                            <input type="text" class="form-control" id="hours" name="hours"><br>
+                            <button type="button" onclick="showmin()" class="button">Minutes</button>
+                            <button type="button" onclick="showsec()" class="button">Seconds</button><br><br>
+                            
+                        </div>
+                        <div class="form-group">
+                            <input type="text" disabled class="form-control" id="result2"
+                                placeholder="The result will be displayed here">
+                        </div>
+                    </form>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
